@@ -1,0 +1,64 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}">
+
+    <title>Resume Uploader</title>
+</head>
+
+<body>
+    <div class="container mb-5">
+        <h1 class="text-center alert-danger">Resume Uploader</h1>
+        <div class="row">
+            <div class="col-sm-8">
+                <form action="" method="post" enctype="multipart/form-data" class="shadow p-5" autocomplete="off">
+                    {% csrf_token %}
+                    {% for fm in form %}
+                    <div class="form-group mb-3">
+                        {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors | striptags}}</small>
+                    </div>
+                    {% endfor %}
+                    <input type="submit" value="Submit" class="btn btn-primary">
+                    {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors%}
+                    <p class="alert alert-danger my-3">{{error}}</p>
+                    {% endfor %}
+                    {% endif %}
+                </form>
+            </div>
+            <div class="col-sm-4">
+                <h3 class="text-center"> <u>List of canditates</u></h3>
+                {% for cand in candidates %}
+                {{cand.id}} : <a href="{% url 'details' cand.id %}">{{cand.name}}</a>
+                <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+{% load custome_filter %}
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Candidate Resume</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="alert-danger text-center">Candidate Details</h1>
+        <div class="row">
+            <div class="col-sm-10 shadow text-center offset-sm-1 p-2">
+                <h3 class="text-center"><u>Resume</u></h3>
+                <p class="">Application No: {{candidate.id}}</p>
+                <img src="{{candidate.profile_image.url}}" alt="" class="img-fluid img-thumbnail mt-2" width="150"
+                    height="150">
+                <p>Name: {{candidate.name}}</p>
+                <p>Date of Birth: {{candidate.dob}}</p>
+                <p>Gender: {{candidate.gender}}</p>
+                <p>Address: {{candidate.locality}}, {{candidate.city}}, {{candidate.state}} - {{candidate.pin}}</p>
+                <p>Mobile No: {{candidate.mobile}}</p>
+                <p>Email Id: {{candidate.email}}</p>
+                <p>Preferred Job cities: {{candidate.job_city | remove_comma:"[]'"}}</p>
+                <p>Attachment: <a href="{{candidate.my_file.url}}">Download File</a> </p>
+                <a href="/resume-form" class="btn btn-primary">Back To Home</a>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
